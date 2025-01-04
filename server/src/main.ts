@@ -22,7 +22,3 @@ app
   });
 
 import type { RequestHandler } from "express";
-
-app.get("/", (req, res) => {
-  res.send("Welcome to Wild Series");
-});
