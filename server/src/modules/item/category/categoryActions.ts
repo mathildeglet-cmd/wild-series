@@ -1,5 +1,7 @@
 // Some data to make the trick
 import type { RequestHandler } from "express";
+// Import access to data
+import categoryRepository from "./categoryRepository";
 
 const categories = [
   {
@@ -13,12 +15,10 @@ const categories = [
 ];
 
 // Declare the actions
-const browse: RequestHandler = (req, res) => {
-  if (req.query != null) {
-    const category = res.json(categories);
-  } else {
-    res.sendStatus(404);
-  }
+const browse: RequestHandler = async (req, res) => {
+  const categoriesFromDB = await categoryRepository.readAll();
+
+  res.json(categoriesFromDB);
 };
 
 const read: RequestHandler = (req, res) => {
